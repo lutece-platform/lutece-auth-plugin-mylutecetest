@@ -32,8 +32,8 @@
 	
 	<properties>
 		<componentName>mylutecetest</componentName>
-		<jiraProjectName>LUTECE</jiraProjectName>
-		<jiraComponentId>10050</jiraComponentId>
+		<jiraProjectName>MYLUTECETEST</jiraProjectName>
+		<jiraComponentId>10581</jiraComponentId>
 	</properties>
     <scm>
         <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/authentication/plugin-mylutecetest</connection>
