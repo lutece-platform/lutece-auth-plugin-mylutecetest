@@ -62,6 +62,7 @@ public class MyLuteceTestApp implements XPageApplication
     private static final String MARK_USER_ROLES = "user_roles";
     private static final String MARK_INFOS_LIST = "keys_list";
     private static final String MARK_AUTHENTICATION_SERVICE = "authentication_service";
+    private static final String MARK_EMAIL = "email";
 
     /**
      * {@inheritDoc }
@@ -88,6 +89,7 @@ public class MyLuteceTestApp implements XPageApplication
         model.put( MARK_USER_ROLES, getRoles( user ) );
         model.put( MARK_AUTHENTICATION_SERVICE, user.getAuthenticationService(  ) );
         model.put( MARK_INFOS_LIST, getKeys( user ) );
+        model.put( MARK_EMAIL , user.getEmail() );
 
         HtmlTemplate t = AppTemplateService.getTemplate( TEMPLATE_TEST_APP, Locale.getDefault(  ), model );
         page.setTitle( "MyLutece Test App" );
