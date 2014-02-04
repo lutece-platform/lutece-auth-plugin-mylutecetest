@@ -9,7 +9,7 @@
 	<groupId>fr.paris.lutece.plugins</groupId>
 	<artifactId>plugin-mylutecetest</artifactId>
 	<packaging>lutece-plugin</packaging>
-	<version>2.1.4-SNAPSHOT</version>
+	<version>2.1.4</version>
 	<name>Lutece mylutece test plugin</name>
 
 	<repositories>
@@ -36,8 +36,8 @@
 		<jiraComponentId>10581</jiraComponentId>
 	</properties>
     <scm>
-        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/authentication/plugin-mylutecetest</connection>
-        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/authentication/plugin-mylutecetest</developerConnection>
-        <url>http://dev.lutece.paris.fr/viewvc/lutece/portal/trunk/plugins/authentication/plugin-mylutecetest</url>
+        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/tags/plugin-mylutecetest-2.1.4</connection>
+        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/tags/plugin-mylutecetest-2.1.4</developerConnection>
+        <url>http://dev.lutece.paris.fr/viewvc/lutece/portal/tags/plugin-mylutecetest-2.1.4</url>
     </scm>
 </project>
