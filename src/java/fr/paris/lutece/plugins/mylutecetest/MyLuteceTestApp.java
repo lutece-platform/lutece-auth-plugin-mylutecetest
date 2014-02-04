@@ -40,7 +40,12 @@ import fr.paris.lutece.portal.service.security.UserNotSignedException;
 import fr.paris.lutece.portal.service.template.AppTemplateService;
 import fr.paris.lutece.portal.web.xpages.XPage;
 import fr.paris.lutece.portal.web.xpages.XPageApplication;
+import fr.paris.lutece.util.ReferenceList;
 import fr.paris.lutece.util.html.HtmlTemplate;
+
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -51,23 +56,20 @@ import javax.servlet.http.HttpServletRequest;
 public class MyLuteceTestApp implements XPageApplication
 {
     private static final String TEMPLATE_TEST_APP = "/skin/plugins/mylutecetest/mylutecetest.html";
-    private static final String BOOKMARK_USER_NAME = "@user_name@";
-    private static final String BOOKMARK_GIVEN_NAME = "@user_given_name@";
-    private static final String BOOKMARK_FAMILY_NAME = "@user_family_name@";
-    private static final String BOOKMARK_USER_ROLES = "@user_roles@";
-    private static final String BOOKMARK_AUTHENTICATION_SERVICE = "@authentication_service@";
+    private static final String MARK_USER_NAME = "user_name";
+    private static final String MARK_GIVEN_NAME = "user_given_name";
+    private static final String MARK_FAMILY_NAME = "user_family_name";
+    private static final String MARK_USER_ROLES = "user_roles";
+    private static final String MARK_INFOS_LIST = "keys_list";
+    private static final String MARK_AUTHENTICATION_SERVICE = "authentication_service";
 
     /**
-     * This method implements the XPageApplication interface
-     * @param request The HTTP request
-     * @param nMode The current mode
-     * @param plugin The plugin which belongs this app
-     * @return The XPage object filled depending the request
+     * {@inheritDoc }
      */
+    @Override
     public XPage getPage( HttpServletRequest request, int nMode, Plugin plugin )
         throws UserNotSignedException
     {
-        // TODO : Display the current user infos
         XPage page = new XPage(  );
 
         LuteceUser user = SecurityService.getInstance(  ).getRegisteredUser( request );
@@ -77,16 +79,20 @@ public class MyLuteceTestApp implements XPageApplication
             throw new UserNotSignedException(  );
         }
 
-        HtmlTemplate t = AppTemplateService.getTemplate( TEMPLATE_TEST_APP );
-        page.setTitle( "MyLuteceTestApp" );
-        page.setPathLabel( "MyLuteceTestApp" );
+        Map<String, Object> model = new HashMap<String, Object>(  );
 
-        t.substitute( BOOKMARK_USER_NAME, user.getName(  ) );
-        t.substitute( BOOKMARK_GIVEN_NAME, user.getUserInfo( LuteceUser.NAME_GIVEN ) );
-        t.substitute( BOOKMARK_FAMILY_NAME, user.getUserInfo( LuteceUser.NAME_FAMILY ) );
+        model.put( MARK_USER_NAME, user.getName(  ) );
+        model.put( MARK_GIVEN_NAME, user.getUserInfo( LuteceUser.NAME_GIVEN ) );
+        model.put( MARK_FAMILY_NAME, user.getUserInfo( LuteceUser.NAME_FAMILY ) );
 
-        t.substitute( BOOKMARK_USER_ROLES, getRoles( user ) );
-        t.substitute( BOOKMARK_AUTHENTICATION_SERVICE, user.getAuthenticationService(  ) );
+        model.put( MARK_USER_ROLES, getRoles( user ) );
+        model.put( MARK_AUTHENTICATION_SERVICE, user.getAuthenticationService(  ) );
+        model.put( MARK_INFOS_LIST, getKeys( user ) );
+
+        HtmlTemplate t = AppTemplateService.getTemplate( TEMPLATE_TEST_APP, Locale.getDefault(  ), model );
+        page.setTitle( "MyLutece Test App" );
+        page.setPathLabel( "MyLutece Test App" );
+
         page.setContent( t.getHtml(  ) );
 
         return page;
@@ -99,7 +105,7 @@ public class MyLuteceTestApp implements XPageApplication
      */
     private String getRoles( LuteceUser user )
     {
-        StringBuffer sbRoles = new StringBuffer(  );
+        StringBuilder sbRoles = new StringBuilder(  );
         String[] roles = user.getRoles(  );
 
         if ( roles != null )
@@ -120,5 +126,22 @@ public class MyLuteceTestApp implements XPageApplication
         }
 
         return sbRoles.toString(  );
+    }
+
+    /**
+     * Gets all user infos for a given user
+     * @param user The User
+     * @return The list
+     */
+    private ReferenceList getKeys( LuteceUser user )
+    {
+        ReferenceList list = new ReferenceList(  );
+
+        for ( String strKey : user.getUserInfos(  ).keySet(  ) )
+        {
+            list.addItem( strKey, user.getUserInfo( strKey ) );
+        }
+
+        return list;
     }
 }

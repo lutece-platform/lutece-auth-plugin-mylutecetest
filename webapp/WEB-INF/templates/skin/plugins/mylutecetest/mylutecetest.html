@@ -1,32 +1,32 @@
-<center>
-<br/>
-<br/>
-<br/>
-<h1> Hello @user_given_name@ @user_family_name@ </h1>
-[ internal name or login : @user_name@ ]
-<br/>
-<br/>
-<table cellpadding="1" cellspacing="1" border="1" width="40%" >
- <tr>
-  <th>USER INFO</th><th>VALUE</th>
- </tr>
- <tr>
-  <th>given.name</th><th>@user_given_name@&nbsp;</th>
- </tr>
- <tr>
-  <th>family.name</th><th>@user_family_name@&nbsp;</th>
- </tr>
-</table>
-<br/>
-<b>User's roles : @user_roles@</b>
-<br/>
-<br/>
-This user has been authentificated by : <b>@authentication_service@</b>
-<br/>
-<br/>
-<br/>
-</center>
-
+<div class="row">
+    <div class="span12">
+        <br/>
+        <br/>
+        <br/>
+        <h1> Hello ${user_given_name} ${user_family_name} </h1>
+        [ internal name or login : ${user_name} ]
+        <br/>
+        <br/>
+        <table class="table table-condensed table-striped" >
+            <tr>
+                <th>USER INFO KEY</th><th>VALUE</th>
+            </tr>
+            <#list keys_list as key>
+            <tr>
+                <td>${key.code}</td><td>${key.name!'-'}</td>
+            </tr>
+            </#list>
+        </table>
+        <br/>
+        <b>User's roles : ${user_roles}</b>
+        <br/>
+        <br/>
+        This user has been authentificated by : <b>${authentication_service}</b>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+</div>
 
 
 
