@@ -89,7 +89,7 @@ public class MyLuteceTestApp implements XPageApplication
         model.put( MARK_USER_ROLES, getRoles( user ) );
         model.put( MARK_AUTHENTICATION_SERVICE, user.getAuthenticationService(  ) );
         model.put( MARK_INFOS_LIST, getKeys( user ) );
-        model.put( MARK_EMAIL , user.getEmail() );
+        model.put( MARK_EMAIL, user.getEmail(  ) );
 
         HtmlTemplate t = AppTemplateService.getTemplate( TEMPLATE_TEST_APP, Locale.getDefault(  ), model );
         page.setTitle( "MyLutece Test App" );
