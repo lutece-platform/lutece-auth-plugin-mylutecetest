@@ -16,7 +16,7 @@
             <tr>
                 <th>USER INFO KEY</th><th>VALUE</th>
             </tr>
-            <#list keys_list as key>
+            <#list keys_list?sort_by('code') as key>
             <tr>
                 <td>${key.code}</td><td>${key.name!'-'}</td>
             </tr>
@@ -26,7 +26,7 @@
         <b>User's roles : ${user_roles}</b>
         <br/>
         <br/>
-        This user has been authentificated by : <b>${authentication_service}</b>
+        This user has been authenticated by : <b>${authentication_service}</b>
         <br/>
         <br/>
         <br/>
