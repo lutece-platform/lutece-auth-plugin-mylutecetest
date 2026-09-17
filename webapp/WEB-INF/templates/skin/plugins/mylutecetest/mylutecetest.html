@@ -1,38 +1,31 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-lg-12">
-        <br/>
-        <br/>
-        <br/>
-        <h1><i class="glyphicon glyphicon-user"></i> Connected User : ${user_given_name} ${user_family_name} </h1>
-        Internal name or login : ${user_name}
-        <br/>
-        <br/>
-        Email : ${email}
-        <br/>
-        <br/>
-        
-        <table class="table table-condensed table-striped" >
-            <tr>
-                <th>USER INFO KEY</th><th>VALUE</th>
-            </tr>
-            <#list keys_list?sort_by('code') as key>
-            <tr>
-                <td>${key.code}</td><td>${key.name!'-'}</td>
-            </tr>
-            </#list>
-        </table>
-        <br/>
-        <b>User's roles : ${user_roles}</b>
-        <br/>
-        <br/>
-        This user has been authenticated by : <b>${authentication_service}</b>
-        <br/>
-        <br/>
-        <br/>
-    </div>
-  </div>
-</div>
-
-
-
+<@cContainer>
+<@cRow>
+<@cCol>
+<@cSection>
+        <@cTitle level=1>Connected User : ${user_given_name!''} ${user_family_name!''}</@cTitle>
+        <@cText>Internal name or login : ${user_name!''}</@cText>
+        <@cText>Email : ${email!''}</@cText>
+    
+        <@cTable id='mylutecetest-user-info' caption='User information carried by the session'>
+            <@cThead>
+                <@cTr>
+                    <@cTh>USER INFO KEY</@cTh>
+                    <@cTh>VALUE</@cTh>
+                </@cTr>
+            </@cThead>
+            <@cTbody>
+                <#list keys_list?sort_by('code') as key>
+                <@cTr>
+                    <@cTd>${key.code}</@cTd>
+                    <@cTd>${key.name!'-'}</@cTd>
+                </@cTr>
+                </#list>
+            </@cTbody>
+        </@cTable>
+    
+        <@cText>User's roles : ${user_roles!''}</@cText>
+        <@cText>This user has been authenticated by : ${authentication_service!''}</@cText>
+    </@cSection>
+</@cCol>
+</@cRow>
+</@cContainer>

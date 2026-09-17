@@ -43,18 +43,25 @@ import fr.paris.lutece.portal.web.xpages.XPageApplication;
 import fr.paris.lutece.util.ReferenceList;
 import fr.paris.lutece.util.html.HtmlTemplate;
 
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Named;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 /**
  * This class provides information on the current MyLutece Authentication Module
  */
+@SessionScoped
+@Named( "mylutecetest.xpage.mylutecetest" )
 public class MyLuteceTestApp implements XPageApplication
 {
+    private static final long serialVersionUID = 1L;
+
     private static final String TEMPLATE_TEST_APP = "/skin/plugins/mylutecetest/mylutecetest.html";
     private static final String MARK_USER_NAME = "user_name";
     private static final String MARK_GIVEN_NAME = "user_given_name";

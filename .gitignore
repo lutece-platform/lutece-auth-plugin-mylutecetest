@@ -1,1 +1,8 @@
-/nb-configuration.xml
+target/
+logs/
+e2e/artifacts/
+java.io.tmpdir/
+.settings/
+.project
+.classpath
+e2e/

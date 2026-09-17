@@ -2,14 +2,14 @@
     <parent>
         <artifactId>lutece-global-pom</artifactId>
         <groupId>fr.paris.lutece.tools</groupId>
-        <version>7.0.2</version>
+        <version>8.0.1</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>plugin-mylutecetest</artifactId>
     <packaging>lutece-plugin</packaging>
-    <version>3.2.1-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
     <name>Lutece mylutece test plugin</name>
 
     <repositories>
@@ -25,15 +25,13 @@
         <dependency>
             <groupId>fr.paris.lutece</groupId>
             <artifactId>lutece-core</artifactId>
-            <version>[4.9.9,7.9.9)</version>
+            <version>[8.0.0,)</version>
             <type>lutece-core</type>
         </dependency>
     </dependencies>
 	
     <properties>
         <componentName>mylutecetest</componentName>
-        <jiraProjectName>MYLUTECETEST</jiraProjectName>
-        <jiraComponentId>10581</jiraComponentId>
     </properties>
     <scm>
         <connection>scm:git:https://github.com/lutece-platform/lutece-auth-plugin-mylutecetest.git</connection>
