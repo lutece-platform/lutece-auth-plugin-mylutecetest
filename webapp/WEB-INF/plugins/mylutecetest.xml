@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><plug-in>
     <name>mylutecetest</name>
     <class>fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation</class>
-    <version>3.2.1-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
     <description>Application de test de l'authentification</description>
     <documentation/>
     <installation/>
@@ -18,7 +18,6 @@
     <applications>
         <application>
             <application-id>mylutecetest</application-id>
-            <application-class>fr.paris.lutece.plugins.mylutecetest.MyLuteceTestApp</application-class>
         </application>
     </applications>
 </plug-in>
