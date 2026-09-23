@@ -1,16 +1,17 @@
+<@cTpl>
 <@cContainer>
 <@cRow>
 <@cCol>
 <@cSection>
-        <@cTitle level=1>Connected User : ${user_given_name!''} ${user_family_name!''}</@cTitle>
-        <@cText>Internal name or login : ${user_name!''}</@cText>
-        <@cText>Email : ${email!''}</@cText>
+        <@cTitle level=2>#i18n{mylutecetest.xpage.connectedUser} : ${user_given_name!''} ${user_family_name!''}</@cTitle>
+        <@cText>#i18n{mylutecetest.xpage.login} : ${user_name!''}</@cText>
+        <@cText>#i18n{mylutecetest.xpage.email} : ${email!''}</@cText>
     
-        <@cTable id='mylutecetest-user-info' caption='User information carried by the session'>
+        <@cTable id='mylutecetest-user-info' caption='#i18n{mylutecetest.xpage.tableCaption}'>
             <@cThead>
                 <@cTr>
-                    <@cTh>USER INFO KEY</@cTh>
-                    <@cTh>VALUE</@cTh>
+                    <@cTh>#i18n{mylutecetest.xpage.columnKey}</@cTh>
+                    <@cTh>#i18n{mylutecetest.xpage.columnValue}</@cTh>
                 </@cTr>
             </@cThead>
             <@cTbody>
@@ -23,9 +24,10 @@
             </@cTbody>
         </@cTable>
     
-        <@cText>User's roles : ${user_roles!''}</@cText>
-        <@cText>This user has been authenticated by : ${authentication_service!''}</@cText>
+        <@cText>#i18n{mylutecetest.xpage.roles} : ${user_roles!''}</@cText>
+        <@cText>#i18n{mylutecetest.xpage.authenticationService} : ${authentication_service!''}</@cText>
     </@cSection>
 </@cCol>
 </@cRow>
 </@cContainer>
+</@cTpl>
