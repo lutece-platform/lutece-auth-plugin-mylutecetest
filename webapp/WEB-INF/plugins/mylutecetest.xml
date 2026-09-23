@@ -2,7 +2,7 @@
     <name>mylutecetest</name>
     <class>fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation</class>
     <version>4.0.0-SNAPSHOT</version>
-    <description>Application de test de l'authentification</description>
+    <description>mylutecetest.plugin.description</description>
     <documentation/>
     <installation/>
     <changes/>

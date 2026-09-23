@@ -33,11 +33,13 @@
  */
 package fr.paris.lutece.plugins.mylutecetest;
 
+import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.security.SecurityService;
 import fr.paris.lutece.portal.service.security.UserNotSignedException;
 import fr.paris.lutece.portal.service.template.AppTemplateService;
+import fr.paris.lutece.portal.web.l10n.LocaleService;
 import fr.paris.lutece.portal.web.xpages.XPage;
 import fr.paris.lutece.portal.web.xpages.XPageApplication;
 import fr.paris.lutece.util.ReferenceList;
@@ -70,6 +72,8 @@ public class MyLuteceTestApp implements XPageApplication
     private static final String MARK_INFOS_LIST = "keys_list";
     private static final String MARK_AUTHENTICATION_SERVICE = "authentication_service";
     private static final String MARK_EMAIL = "email";
+    private static final String PROPERTY_PAGE_TITLE = "mylutecetest.xpage.title";
+    private static final String PROPERTY_NO_ROLE = "mylutecetest.xpage.noRole";
 
     /**
      * {@inheritDoc }
@@ -87,20 +91,22 @@ public class MyLuteceTestApp implements XPageApplication
             throw new UserNotSignedException(  );
         }
 
+        Locale locale = LocaleService.getContextUserLocale( request );
         Map<String, Object> model = new HashMap<String, Object>(  );
 
         model.put( MARK_USER_NAME, user.getName(  ) );
         model.put( MARK_GIVEN_NAME, user.getUserInfo( LuteceUser.NAME_GIVEN ) );
         model.put( MARK_FAMILY_NAME, user.getUserInfo( LuteceUser.NAME_FAMILY ) );
 
-        model.put( MARK_USER_ROLES, getRoles( user ) );
+        model.put( MARK_USER_ROLES, getRoles( user, locale ) );
         model.put( MARK_AUTHENTICATION_SERVICE, user.getAuthenticationService(  ) );
         model.put( MARK_INFOS_LIST, getKeys( user ) );
         model.put( MARK_EMAIL, user.getEmail(  ) );
 
-        HtmlTemplate t = AppTemplateService.getTemplate( TEMPLATE_TEST_APP, Locale.getDefault(  ), model );
-        page.setTitle( "MyLutece Test App" );
-        page.setPathLabel( "MyLutece Test App" );
+        HtmlTemplate t = AppTemplateService.getTemplate( TEMPLATE_TEST_APP, locale, model );
+        String strTitle = I18nService.getLocalizedString( PROPERTY_PAGE_TITLE, locale );
+        page.setTitle( strTitle );
+        page.setPathLabel( strTitle );
 
         page.setContent( t.getHtml(  ) );
 
@@ -110,9 +116,10 @@ public class MyLuteceTestApp implements XPageApplication
     /**
      * Gets user roles
      * @param user The Lutece user
+     * @param locale The locale of the message shown when the user has no role
      * @return A String containing a comma separated roles list
      */
-    private String getRoles( LuteceUser user )
+    private String getRoles( LuteceUser user, Locale locale )
     {
         StringBuilder sbRoles = new StringBuilder(  );
         String[] roles = user.getRoles(  );
@@ -131,7 +138,7 @@ public class MyLuteceTestApp implements XPageApplication
         }
         else
         {
-            sbRoles.append( "No role available" );
+            sbRoles.append( I18nService.getLocalizedString( PROPERTY_NO_ROLE, locale ) );
         }
 
         return sbRoles.toString(  );
